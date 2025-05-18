@@ -1,6 +1,4 @@
 from collections import defaultdict
-from contextlib import nullcontext
-import numpy as np
 '''
 creates a graph as a dictionary, 
 it represents a decision tree of whether to add a specific item or not
@@ -111,7 +109,7 @@ def get_items(path):
             selected.append(current[1])
     return selected
 
-'''
+
 #two examples:
 capacity = 5
 values = [60.0, 100.0, 120.0]
@@ -134,7 +132,7 @@ best_path = get_path(G,prev)
 items = get_items(best_path)
 print(best_path)
 print(items)
-'''
+
 
 
 
