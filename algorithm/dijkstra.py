@@ -2,19 +2,19 @@ from collections import defaultdict
 
 def create_graph(values, volumes, L):
     """
-    creates a graph as a dictionary, it represents a decision tree of whether to add a specific item or not
-    each vertex given as a key returns edges from it to different vertices
+    Creates a graph as a dictionary, it represents a decision tree of whether to add a specific item or not.
+    Each vertex given as a key returns edges from it to different vertices
     eg. graph[vertex1]=[(vertex2,weight2),(vertex3,weight3)]
     vertices are defined as tuples (free space left, item id)
     with the exception of first and last vertex defined as:
     (free space, -1) and (0, number of items) respectively
     in order to use Dijkstra algorythm later on, weights of edges is defined as such:
-    highest volume of all items, for all edges where an item was not added
+    highest volume of all items, for all edges where an item was not added,
     highest volume of all items - weight of item added, for edges where item was added
-    :param values:
-    :param volumes:
-    :param L:
-    :return:
+    :param values: takes in weights of items
+    :param volumes: takes in possible number of items
+    :param L: capacity of the knapsack
+    :return: returns a graph as a dictionary
     """
     N=len(values)
 
@@ -47,12 +47,12 @@ def create_graph(values, volumes, L):
 
 def dijkstra(G):
     """
-    runs Dijkstra algorithm to find the shortest path in a graph
+    Runs Dijkstra algorithm to find the shortest path in a graph
     returns two dictionaries,
     dist - storing distances from starting vertex to any other vertex
     prev - storing the previous vertex in the shortest path from starting vertex to any other vertex
-    :param G:
-    :return:
+    :param G: takes in a graph as a dictionary
+    :return: returns two dictionaries, one with distances and the other with previous vertices
     """
     Q = list(G.keys())
 
@@ -86,11 +86,11 @@ def dijkstra(G):
 
 def get_path(G,prev):
     """
-    returns the shortes path between staring and ending vertex
+    Returns the shortes path between staring and ending vertex
     takes in the graph and dictionary prev from dijkstra algorythm
-    :param G:
-    :param prev:
-    :return:
+    :param G: takes in a graph as a dictionary
+    :param prev: takes in a dictionary with previous vertices from dijkstra algorythm
+    :return: returns the shortest path as a list of vertices
     """
     Q = list(G.keys())
 
@@ -112,9 +112,9 @@ def get_path(G,prev):
 
 def get_items(path):
     """
-    takes in the best path and returns the items being the solution to the knapsack problem
-    :param path:
-    :return:
+    Takes in the best path and returns the items being the solution to the knapsack problem
+    :param path: takes in the best path as a list of vertices
+    :return: returns a list of items being the solution to the knapsack problem
     """
     selected = []
     for i in range(1, len(path) - 1):
@@ -123,58 +123,26 @@ def get_items(path):
             selected.append(current[1])
     return selected
 
+if __name__ == '__main__':
+    #two examples:
+    capacity = 5
+    values = [60.0, 100.0, 120.0]
+    volumes = [1.0, 2.0, 3.0]
 
-#two examples:
-capacity = 5
-values = [60.0, 100.0, 120.0]
-volumes = [1.0, 2.0, 3.0]
+    G = create_graph(values,volumes,capacity)
+    dist, prev = dijkstra(G)
+    best_path = get_path(G,prev)
+    items = get_items(best_path)
+    print(best_path)
+    print(items)
 
-G = create_graph(values,volumes,capacity)
-dist, prev = dijkstra(G)
-best_path = get_path(G,prev)
-items = get_items(best_path)
-print(best_path)
-print(items)
+    capacity = 6
+    values = [20.0, 17.0, 18.0, 15.0, 7.0]
+    volumes = [4.0, 3.0, 2.0, 2.0, 1.0]
 
-capacity = 6
-values = [20.0, 17.0, 18.0, 15.0, 7.0]
-volumes = [4.0, 3.0, 2.0, 2.0, 1.0]
-
-G = create_graph(values,volumes,capacity)
-dist, prev = dijkstra(G)
-best_path = get_path(G,prev)
-items = get_items(best_path)
-print(best_path)
-print(items)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    G = create_graph(values,volumes,capacity)
+    dist, prev = dijkstra(G)
+    best_path = get_path(G,prev)
+    items = get_items(best_path)
+    print(best_path)
+    print(items)
