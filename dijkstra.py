@@ -1,17 +1,21 @@
 from collections import defaultdict
-'''
-creates a graph as a dictionary, 
-it represents a decision tree of whether to add a specific item or not
-each vertex given as a key returns edges from it to different vertices
-eg. graph[vertex1]=[(vertex2,weight2),(vertex3,weight3)]
-vertices are defined as tuples (free space left, item id)
-with the exception of first and last vertex defined as:
-(free space, -1) and (0, number of items) respectively
-in order to use Dijkstra algorythm later on, weights of edges is defined as such:
-highest volume of all items, for all edges where an item was not added
-highest volume of all items - weight of item added, for edges where item was added 
-'''
+
 def create_graph(values, volumes, L):
+    """
+    creates a graph as a dictionary, it represents a decision tree of whether to add a specific item or not
+    each vertex given as a key returns edges from it to different vertices
+    eg. graph[vertex1]=[(vertex2,weight2),(vertex3,weight3)]
+    vertices are defined as tuples (free space left, item id)
+    with the exception of first and last vertex defined as:
+    (free space, -1) and (0, number of items) respectively
+    in order to use Dijkstra algorythm later on, weights of edges is defined as such:
+    highest volume of all items, for all edges where an item was not added
+    highest volume of all items - weight of item added, for edges where item was added
+    :param values:
+    :param volumes:
+    :param L:
+    :return:
+    """
     N=len(values)
 
     graph = defaultdict(list)
@@ -40,13 +44,16 @@ def create_graph(values, volumes, L):
 
     return graph
 
-'''
-runs Dijkstra algorithm to find the shortest path in a graph
-returns two dictionaries,
-dist - storing distances from starting vertex to any other vertex
-prev - storing the previous vertex in a shortest path from starting vertex to any other vertex
-'''
+
 def dijkstra(G):
+    """
+    runs Dijkstra algorithm to find the shortest path in a graph
+    returns two dictionaries,
+    dist - storing distances from starting vertex to any other vertex
+    prev - storing the previous vertex in the shortest path from starting vertex to any other vertex
+    :param G:
+    :return:
+    """
     Q = list(G.keys())
 
     end = Q[0]
@@ -76,11 +83,15 @@ def dijkstra(G):
 
     return dist, prev
 
-'''
-returns the shortes path between staring and ending vertex
-takes in the graph and dictionary prev from dijkstra algorythm
-'''
+
 def get_path(G,prev):
+    """
+    returns the shortes path between staring and ending vertex
+    takes in the graph and dictionary prev from dijkstra algorythm
+    :param G:
+    :param prev:
+    :return:
+    """
     Q = list(G.keys())
 
     end = Q[0]
@@ -98,10 +109,13 @@ def get_path(G,prev):
 
     return best_path
 
-'''
-takes in the best path and returns the items being the solution to the knapsack problem
-'''
+
 def get_items(path):
+    """
+    takes in the best path and returns the items being the solution to the knapsack problem
+    :param path:
+    :return:
+    """
     selected = []
     for i in range(1, len(path) - 1):
         previous, current = path[i - 1], path[i]
