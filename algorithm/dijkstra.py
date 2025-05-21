@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def create_graph(values, volumes, L):
+def create_graph(values : list, volumes : list, L : float) -> defaultdict:
     """
     Creates a graph as a dictionary, it represents a decision tree of whether to add a specific item or not.
     Each vertex given as a key returns edges from it to different vertices
@@ -12,7 +12,7 @@ def create_graph(values, volumes, L):
     highest volume of all items, for all edges where an item was not added,
     highest volume of all items - weight of item added, for edges where item was added
     :param values: takes in weights of items
-    :param volumes: takes in possible number of items
+    :param volumes: takes in volumes of an items
     :param L: capacity of the knapsack
     :return: returns a graph as a dictionary
     """
@@ -45,10 +45,10 @@ def create_graph(values, volumes, L):
     return graph
 
 
-def dijkstra(G):
+def dijkstra(G :dict) -> tuple:
     """
-    Runs Dijkstra algorithm to find the shortest path in a graph
-    returns two dictionaries,
+    Runs Dijkstra algorithm to find the shortest path in a graph,
+    where the graph is represented as a dictionary
     dist - storing distances from starting vertex to any other vertex
     prev - storing the previous vertex in the shortest path from starting vertex to any other vertex
     :param G: takes in a graph as a dictionary
@@ -84,7 +84,7 @@ def dijkstra(G):
     return dist, prev
 
 
-def get_path(G,prev):
+def get_path(G : defaultdict,prev : dict) -> list:
     """
     Returns the shortes path between staring and ending vertex
     takes in the graph and dictionary prev from dijkstra algorythm
@@ -110,7 +110,7 @@ def get_path(G,prev):
     return best_path
 
 
-def get_items(path):
+def get_items(path : list) -> list:
     """
     Takes in the best path and returns the items being the solution to the knapsack problem
     :param path: takes in the best path as a list of vertices
