@@ -7,20 +7,10 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 </head>
 <body>
+<div id="general_alerts"></div>
 <h1>Dijkstra Backpack Problem</h1>
-<form action="/solve" method="post">
+<form onsubmit="return solution()">
     <div class="input_container">
-        <label for="weights">Weights (comma-separated):</label>
-        <input
-                type="text"
-                id="weights"
-                name="weights"
-                required
-                placeholder="1,2,4.5,23.8,0.5"
-                onblur="weights_validation()"
-        >
-        <br>
-        <div id="weights_alerts"></div>
         <label for="values">Values (comma-separated):</label>
         <input
                 type="text"
@@ -32,6 +22,17 @@
         >
         <br>
         <div id="values_alerts"></div>
+        <label for="volumes">Volumes (comma-separated):</label>
+        <input
+                type="text"
+                id="volumes"
+                name="volumes"
+                required
+                placeholder="1,2,4.5,23.8,0.5"
+                onblur="volumes_validation()"
+        >
+        <br>
+        <div id="volumes_alerts"></div>
         <label for="capacity">Capacity:</label>
         <input
                 type="text"
@@ -39,11 +40,41 @@
                 name="capacity"
                 required
                 placeholder="120.0"
+                onchange="capacity_validation()"
         >
         <br>
+        <div id="capacity_alerts"></div>
+        <button type="button" onclick="generate_data()">Generate
+        </button>
     </div>
-    <button type="submit"> Solve</button>
+    <button type="submit">Solve</button>
 </form>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
+<script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<div id="mynetwork-container">
+    <h1>Solution Graph:</h1>
+    <div id="mynetwork"></div>
+</div>
+<div class="icons">
+    <img src="{{ url_for('static', filename='results.png') }}" alt="results" id="results"  onclick="show_item('result')">
+    <div id="result" class="info"></div>
+    <div id="information" class="info" style="width: 600px;">
+        <h3>How to Use This Website</h3>
+        <p>
+            <strong>Values:</strong> Enter the worth/value of each item separated by commas (e.g., 10,20,30). <br>
+            <strong>Volumes:</strong> Enter the weight/size of each item separated by commas (e.g., 5,10,15). <br>
+            <strong>Capacity:</strong> Enter the maximum capacity of your backpack as a single number (e.g., 50).<br>
+            You can also click the "Generate" button to automatically fill the fields with random data.
+        </p>
+
+        <h3>Graph Color Guide</h3>
+        <p>
+            <strong style="color: lightgreen">Green edges:</strong> Show the optimal path chosen by Dijkstra's algorithm.<br>
+            <strong style="color: orange">Green orange:</strong> Represent items included in the knapsack.<br>
+            <strong style="color: #e74c3c">Red nodes:</strong> Represent first and last node of knapsack graph.<br>
+        </p>
+    </div>
+    <img src="{{ url_for('static', filename='info.png') }}" alt="info" id="info" onclick="show_item('information')">
+</div>
 </body>
 </html>
