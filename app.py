@@ -13,6 +13,12 @@ def index():
 
 @app.route('/solve', methods=['POST'])
 def solve():
+    """
+    This function takes in the input data from the request and solves the backpack problem using Dijkstra algorithm.
+    It returns the graph in a format that can be used by vis.js to visualize the graph.
+    While doing so, it also validates the input data and handles errors.
+    :return: JSON object with the graph in a format that can be used by vis.js
+    """
     if request.is_json:
         # Get the input data from the json
         values = request.get_json().get('values')
@@ -56,6 +62,13 @@ def solve():
             items = get_items(path=path)
 
             def convert_to_vis_format(graph : dict, best_path=None, selected_items=None) -> dict:
+                """
+                Converts the graph to a format that can be used by vis.js to visualize the graph.
+                :param graph: dictionary representing the graph.
+                :param best_path: optimal path found by Dijkstra algorithm.
+                :param selected_items: items selected in the backpack.
+                :return: a dictionary containing nodes and edges in vis.js format.
+                """
                 nodes = set()
                 edges = []
 
@@ -110,6 +123,14 @@ def solve():
 
 @app.route('/generate', methods=['GET'])
 def generate():
+    """
+    This function generates random values, volumes and capacity for the backpack problem.
+    Function generates random values and volumes for a number of vertices between 3 and 7.
+    The values and volumes are generated as random floats between 1 and 100.
+    The capacity is generated as a random float between 1 and 350.
+    It returns the generated values, volumes and capacity in JSON format.
+    :return: JSON object with generated values, volumes and capacity
+    """
     number_of_vertices = randint(3,7)
     return jsonify(
         {
@@ -120,6 +141,11 @@ def generate():
     )
 @app.route('/results', methods=['POST'])
 def result():
+    """
+    This function takes in the input data from the request and solves the backpack problem using Dijkstra algorithm.
+    It returns summary of the items selected in the backpack, their total value and volume.
+    :return: JSON object with selected items, their total value and volume
+    """
     items_list = []
     value = 0
     volume = 0
