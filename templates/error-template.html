@@ -4,71 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Błąd {{ error_code }} - Dijkstra Backpack Problem</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .error-container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: #f8d7da;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 2px solid #e74c3c;
-        }
-        
-        .error-code {
-            font-size: 72px;
-            color: #e74c3c;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        
-        .error-message {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 30px;
-        }
-        
-        .home-button {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 18px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .home-button:hover {
-            background-color: #2980b9;
-        }
-        
-        .error-icon {
-            font-size: 100px;
-            color: #e74c3c;
-            margin-bottom: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_error_template.css') }}">
 </head>
 <body>
     <div class="error-container">
         <div class="error-icon">⚠️</div>
         <div class="error-code">{{ error_code }}</div>
         <div class="error-message">{{ error_message }}</div>
-        <a href="{{ url_for('index') }}" class="home-button">Home Page</a>
+        <a href="{{ url_for('index') }}" class="home-button">Go back</a>
     </div>
 </body>
 </html>
