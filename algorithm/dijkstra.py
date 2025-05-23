@@ -11,8 +11,8 @@ def create_graph(values : list, volumes : list, L : float) -> defaultdict:
     in order to use Dijkstra algorythm later on, weights of edges is defined as such:
     highest volume of all items, for all edges where an item was not added,
     highest volume of all items - weight of item added, for edges where item was added
-    :param values: takes in weights of items
-    :param volumes: takes in volumes of an items
+    :param values: takes in values of items. Determines the weight of edges. Solution optimise for maximum value.
+    :param volumes: takes in volumes of items. Determines space taken in the knapsack.
     :param L: capacity of the knapsack
     :return: returns a graph as a dictionary
     """
@@ -45,7 +45,7 @@ def create_graph(values : list, volumes : list, L : float) -> defaultdict:
     return graph
 
 
-def dijkstra(G :dict) -> tuple:
+def dijkstra(G : dict) -> tuple:
     """
     Runs Dijkstra algorithm to find the shortest path in a graph,
     where the graph is represented as a dictionary
