@@ -1,5 +1,6 @@
 # This is a simple Flask application that visualise Dijkstra backpack problem.
 import logging
+import os
 from random import randint,uniform
 
 from flask import Flask, request, jsonify, render_template
@@ -190,7 +191,7 @@ def internal_server_error(e):
 
 if __name__ == '__main__':
     app.run(
-        host='localhost',
-        port=8080,
-        debug=True
+        host='0.0.0.0',
+        port=int(os.environ.get('PORT', 8080)),
+        debug=False
     )
