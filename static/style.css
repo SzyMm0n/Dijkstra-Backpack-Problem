@@ -1,18 +1,17 @@
 .error{
-
     background-color: #f8d7da;
     color: red;
     font-size: 1.2em;
     font-weight: bold;
     padding: 10px;
     border-radius: 10px;
-    margin: 10px 0;
+    margin: auto;
     border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     animation: fadeIn 0.5s;
     animation-fill-mode: forwards;
@@ -23,15 +22,16 @@
     color: green;
     font-size: 1.2em;
     font-weight: bold;
+    width: 30%;
     padding: 10px;
     border-radius: 10px;
-    margin: 10px 0;
+    margin: auto;
     border: 1px solid green;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 .input_container{
@@ -44,12 +44,11 @@
     padding:  30px 0;
     background-color: #f8fafd;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     animation: fadeIn 0.5s;
     animation-fill-mode: forwards;
     animation-delay: 0.5s;
-
 }
 input{
     max-width: 100%;
@@ -130,4 +129,87 @@ body{
     align-items: center;
     justify-content: center;
     height: 100vh;
+    padding-bottom: 10%;
+}
+#mynetwork-container{
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+#mynetwork{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 1000px;
+    height: 500px;
+    background-color: #f8fafd;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+}
+.icons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 40px 0;
+    justify-content:  space-around;
+
+}
+img{
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+img:hover{
+    transform: scale(1.15);
+    cursor: pointer;
+}
+h2{
+    font-size: 3em;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    text-shadow: 1px 3px 2px rgba(0,0,0,0.1);
+    margin: 40px 0;
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+}
+p{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    text-shadow: 1px 3px 2px rgba(0,0,0,0.1);
+    margin: 20px 0;
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+}
+.info{
+    display: none;
+    width: 400px;
+    padding:  30px 0;
+    background-color: #f8fafd;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
+}
+h3{
+    font-size: 3em;
+    font-weight: bold;
+    color: #343a40;
+    text-align: center;
+    text-shadow: 1px 3px 2px rgba(0,0,0,0.1);
+    margin: 40px 0;
+    animation: fadeIn 0.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.5s;
 }
