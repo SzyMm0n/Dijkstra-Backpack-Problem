@@ -45,10 +45,9 @@
         >
         <br>
         <div id="capacity_alerts"></div>
-        <button type="button" onclick="generate_data()">Generate
-        </button>
+        <button type="submit">Solve</button>
     </div>
-    <button type="submit">Solve</button>
+    <button type="button" onclick="generate_data()">Generate</button>
 </form>
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
@@ -57,25 +56,55 @@
     <div id="mynetwork"></div>
 </div>
 <div class="icons">
-    <img src="{{ url_for('static', filename='results.png') }}" alt="results" id="results"  onclick="show_item('result')">
+    <img src="{{ url_for('static', filename='results.png') }}" alt="Results" id="results"  onclick="show_item('result')">
     <div id="result" class="info"></div>
     <div id="information" class="info" style="width: 600px;">
         <h3>How to Use This Website</h3>
         <p>
+            This website allows you to solve the Dijkstra Backpack Problem using a visual graph representation.
+            You can input the values and volumes of items, as well as the maximum capacity of your backpack.
+            The solution will be displayed in a graph format, showing the optimal path chosen by Dijkstra's algorithm.
+        </p>
+        <p>
+            Optimal solution consists of items that fit into the backpack with maximum value.
+        </p>
+        <h3>Input Fields</h3>
+        <p>
             <strong>Values:</strong> Enter the worth/value of each item separated by commas (e.g., 10,20,30). <br>
-            <strong>Volumes:</strong> Enter the weight/size of each item separated by commas (e.g., 5,10,15). <br>
+            <strong>Volumes:</strong> Enter the size/volume of each item separated by commas (e.g., 5,10,15). <br>
             <strong>Capacity:</strong> Enter the maximum capacity of your backpack as a single number (e.g., 50).<br>
+        </p>
+        <p>
             You can also click the "Generate" button to automatically fill the fields with random data.
         </p>
 
         <h3>Graph Color Guide</h3>
         <p>
-            <strong style="color: lightgreen">Green edges:</strong> Show the optimal path chosen by Dijkstra's algorithm.<br>
-            <strong style="color: orange">Green orange:</strong> Represent items included in the knapsack.<br>
+            <strong style="color: gray">Gray nodes:</strong> Represent the nodes that were not selected in the final solution.<br>
+            <strong style="color: lightgreen">Green nodes:</strong> Show the optimal path chosen by Dijkstra's algorithm.<br>
+            <strong style="color: orange">Orange nodes:</strong> Represent items included in the knapsack.<br>
             <strong style="color: #e74c3c">Red nodes:</strong> Represent first and last node of knapsack graph.<br>
         </p>
+        <h3>Graph Interpretation</h3>
+        <p>
+            The graph displays the items as nodes, with edges representing the relationships between them based on whether they were taken into the knapsack or not.
+            Gray nodes represent remaining possible configurations of the knapsack that were not selected in the final solution.
+            Items that were selected in final solution will be shown in orange, green nodes are indicating they were considered but not included in the final solution.
+            The first and last nodes are highlighted in red to indicate the start and end of the knapsack path.
+        </p>
+        <p>
+            <strong>Note:</strong>If there are no green nodes, it means that all items were selected in the optimal solution.
+        </p>
+        <h3>Result Interpretation</h3>
+        <p>
+            The result will show identifiers of items that were selected in the optimal solution, as well as their total value and volume (e.g.: "Items: 0, 2; Total Value: 60; Total Volume: 30").
+            The identifiers correspond to the indices of the items in the input lists. For example, if the result shows "Items: 0, 2", it means that the first and third items were selected in the optimal solution.
+        </p>
+        <p>
+            To show the result, solve one of the problems by clicking the "Solve" button after filling in the input fields. After that click on the "Results" icon, located on the right side of the page, to see details.
+        </p>
     </div>
-    <img src="{{ url_for('static', filename='info.png') }}" alt="info" id="info" onclick="show_item('information')">
+    <img src="{{ url_for('static', filename='info.png') }}" alt="Info" id="info" onclick="show_item('information')">
 </div>
 </body>
 </html>
