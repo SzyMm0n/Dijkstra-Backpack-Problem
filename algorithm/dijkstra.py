@@ -1,4 +1,5 @@
 from collections import defaultdict
+import heapdict
 
 def create_graph(values : list, volumes : list, L : float) -> defaultdict:
     """
@@ -68,18 +69,18 @@ def dijkstra(G : dict) -> tuple:
         prev[vertex] = None
 
     dist[Q[0]]=0
+    
+    heap = heapdict.heapdict()
+    for vertex in Q:
+        heap[vertex] = dist[vertex]
 
-    def dist_key(a):
-        return dist[a]
-
-    while Q:
-        Q = sorted(Q,key=dist_key)
-        u = Q[0]
-        Q.remove(u)
+    while heap:
+        u, temp = heap.popitem()
         for v in G[u]:
             if dist[v[0]]>dist[u]+v[1]:
                 dist[v[0]] = dist[u]+v[1]
                 prev[v[0]] = u
+                heap[v[0]] = dist[u]+v[1]
 
     return dist, prev
 

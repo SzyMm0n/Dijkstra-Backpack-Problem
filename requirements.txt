@@ -7,3 +7,4 @@ blinker~=1.9.0
 itsdangerous~=2.2.0
 numpy~=2.2.6
 Flask~=3.1.1
+heapdict~=1.0.1
