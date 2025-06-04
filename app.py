@@ -164,6 +164,7 @@ def result():
                 volume += volumes[int(items_list[-1])]
 
         # Log the items
+        items_list.sort()
         logging.info(f'Items: {items_list}')
         # Log the value and volume
         logging.info(f'Value: {value}')
