@@ -26,18 +26,17 @@ def create_graph(values : list, volumes : list, L : float) -> defaultdict:
     for value in values:
         values_inv.append(max_value-value)
 
-    nodes = [(L, -1)]
+    nodes = set()
+    nodes.add((L, -1))
 
     for i in range(N):
-        nodes_new = []
+        nodes_new = set()
         for node in nodes:
             graph[node].append(((node[0],i),max_value))
-            if (node[0],i) not in nodes_new:
-                nodes_new.append((node[0],i))
+            nodes_new.add((node[0],i))
             if node[0]-volumes[i]>=0:
                 graph[node].append(((node[0]-volumes[i], i), values_inv[i]))
-                if (node[0]-volumes[i], i) not in nodes_new:
-                    nodes_new.append((node[0]-volumes[i], i))
+                nodes_new.add((node[0]-volumes[i], i))
         nodes = nodes_new
 
     for node in nodes:
